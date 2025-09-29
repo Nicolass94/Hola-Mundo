@@ -13,5 +13,10 @@
   "splash_background_color": "#FFFFFF",
   "categories": ["utility"],
   "tags": ["hola", "mundo", "miniapp"],
-  "primary_category": "utility"
+  "primary_category": "utility",
+  "baseBuilder": {
+    "allowedAddresses": [
+      "0xd235081ec5D7b5523D5b7C08BAb3De2269F24C16"
+    ]
+  }
 }
