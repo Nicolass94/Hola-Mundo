@@ -1,0 +1,17 @@
+{
+  "id": "hola-mundo-miniapp",
+  "name": "Hola Mundo App",
+  "version": "1",
+  "description": "MiniApp Hola Mundo interactiva desplegada en Vercel",
+  "home_url": "https://hola-mundo-mu.vercel.app",
+  "webhook_url": "https://hola-mundo-mu.vercel.app/api/webhook",
+  "icons": {
+    "icon": "https://hola-mundo-mu.vercel.app/icon.png",
+    "hero": "https://hola-mundo-mu.vercel.app/hero.png"
+  },
+  "splash_image_url": "https://hola-mundo-mu.vercel.app/splash.png",
+  "splash_background_color": "#FFFFFF",
+  "categories": ["utility"],
+  "tags": ["hola", "mundo", "miniapp"],
+  "primary_category": "utility"
+}
