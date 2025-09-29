@@ -15,8 +15,6 @@
   "tags": ["hola", "mundo", "miniapp"],
   "primary_category": "utility",
   "baseBuilder": {
-    "allowedAddresses": [
-      "0xd235081ec5D7b5523D5b7C08BAb3De2269F24C16"
-    ]
+    "allowedAddresses": ["0xb3e217d5f82fbf541d4384088dc26537b0fee136"]
   }
 }
