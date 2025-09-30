@@ -18,5 +18,10 @@
   "primary_category": "utility",
   "baseBuilder": {
     "allowedAddresses": ["0xb3e217d5f82fbf541d4384088dc26537b0fee136"]
+  },
+  "accountAssociation": {
+    "header": "eyJmaWQiOjMxMjcwMywidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweEIxOTQwQjVhQ2NjNGVmZTNmMkU4ODczNWZBOTU0QWY2MzYwNTkzOTcifQ",
+    "payload": "eyJkb21haW4iOiJob2xhLW11bmRvLW11LnZlcmNlbC5hcHAifQ",
+    "signature": "MHhlYWMxOGU1ZWY4ZTJjOGU5ZWExMTc0MDYxZmZiMDQ3YmE0OWQ5NWIzYWQxMDI0OGJjODIwNTBhZTkwZDM2NGI1MDA5NmNjM2FiNTYyNzYxNjE1OWViMjQ1YjkyNTA0ZDZiNTdhMjJiYmI2ZTFhNzQ2OTZjYmJhYWE5YmFiNTcyNDFj"
   }
 }
