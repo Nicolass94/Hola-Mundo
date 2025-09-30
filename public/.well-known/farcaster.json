@@ -1,24 +1,16 @@
 {
-  "id": "hola-mundo-miniapp",
-  "name": "Hola Mundo App",
-  "version": "1",
-  "description": "MiniApp Hola Mundo interactiva desplegada en Vercel",
-  "home_url": "https://hola-mundo-mu.vercel.app",
-  "webhook_url": "https://hola-mundo-mu.vercel.app/api/webhook",
-  "icons": {
-    "icon": "https://hola-mundo-mu.vercel.app/icon.png",
-    "hero": "https://hola-mundo-mu.vercel.app/hero.png"
-  },
-  "splash_image_url": "https://hola-mundo-mu.vercel.app/splash.png",
-  "splash_background_color": "#FFFFFF",
-  "categories": ["utility"],
-  "tags": ["hola", "mundo", "miniapp"],
-  "primary_category": "utility",
-  "miniapp": {
-    "developer": "0xb3e217d5f82fbf541d4384088dc26537b0fee136"
-  },
-  "baseBuilder": {
-    "allowedAddresses": ["0xb3e217d5f82fbf541d4384088dc26537b0fee136"]
+  "frame": {
+    "name": "Hola Mundo App",
+    "version": "1",
+    "iconUrl": "https://hola-mundo-mu.vercel.app/icon.png",
+    "homeUrl": "https://hola-mundo-mu.vercel.app",
+    "imageUrl": "https://hola-mundo-mu.vercel.app/image.png",
+    "splashImageUrl": "https://hola-mundo-mu.vercel.app/splash.png",
+    "splashBackgroundColor": "#6200EA",
+    "webhookUrl": "https://hola-mundo-mu.vercel.app/api/webhook",
+    "subtitle": "Ve lo que tiene para ofrecer la nueva app de Hola Mundo",
+    "description": "Esta es una app de prueba de Hola Mundo",
+    "primaryCategory": "social"
   },
   "accountAssociation": {
     "header": "eyJmaWQiOjMxMjcwMywidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweEIxOTQwQjVhQ2NjNGVmZTNmMkU4ODczNWZBOTU0QWY2MzYwNTkzOTcifQ",
