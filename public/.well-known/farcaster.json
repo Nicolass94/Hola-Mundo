@@ -7,15 +7,16 @@
   "miniapp": {
     "url": "https://hola-mundo-mu.vercel.app"
   },
-  "frame": {
-    "version": "1",
-    "name": "Hola Mundo Frame",
-    "home_url": "https://hola-mundo-mu.vercel.app"
-  },
   "icons": {
-    "icon": "https://hola-mundo-mu.vercel.app/icon.png"
+    "icon": "https://hola-mundo-mu.vercel.app/icon.png",
+    "hero": "https://hola-mundo-mu.vercel.app/hero.png"
   },
+  "splash_image_url": "https://hola-mundo-mu.vercel.app/splash.png",
+  "splash_background_color": "#FFFFFF",
+  "categories": ["utility"],
+  "tags": ["hola", "mundo", "miniapp"],
+  "primary_category": "utility",
   "baseBuilder": {
-    "allowedAddresses": ["0xB3E217d5F82FBF541D4384088dC26537B0feE136"]
+    "allowedAddresses": ["0xb3e217d5f82fbf541d4384088dc26537b0fee136"]
   }
 }
