@@ -1,7 +1,8 @@
 {
-  "frame": {
+  "miniapp": {
+    "id": "hola-mundo-miniapp",
     "name": "Hola Mundo App",
-    "version": "1",
+    "version": "1.0.0",
     "iconUrl": "https://hola-mundo-mu.vercel.app/icon.png",
     "homeUrl": "https://hola-mundo-mu.vercel.app",
     "imageUrl": "https://hola-mundo-mu.vercel.app/image.png",
