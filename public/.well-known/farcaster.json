@@ -20,7 +20,7 @@
   "tags": ["social", "demo", "hola-mundo"],
   "baseBuilder": {
     "allowedAddresses": [
-      "0xB3E217d5F82FBF541D348408b0C265378b0Ee136"
+      "0xB3E217d5F82FBF541D4384088dC26537B0feE136"
     ]
   }
 }
