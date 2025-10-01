@@ -2,14 +2,14 @@
   "miniapp": {
     "id": "hola-mundo-miniapp",
     "name": "Hola Mundo App",
-    "version": "1.0.0",
+    "version": "1",
     "iconUrl": "https://hola-mundo-mu.vercel.app/icon.png",
     "homeUrl": "https://hola-mundo-mu.vercel.app",
     "imageUrl": "https://hola-mundo-mu.vercel.app/image.png",
     "splashImageUrl": "https://hola-mundo-mu.vercel.app/splash.png",
     "splashBackgroundColor": "#6200EA",
     "webhookUrl": "https://hola-mundo-mu.vercel.app/api/webhook",
-    "subtitle": "Ve lo que tiene para ofrecer la nueva app de Hola Mundo",
+    "subtitle": "Explora la app Hola Mundo",
     "description": "Esta es una app de prueba de Hola Mundo",
     "primaryCategory": "social"
   },
