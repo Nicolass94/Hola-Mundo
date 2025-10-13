@@ -1,23 +1,25 @@
 {
-  "frame": {
+  "miniapp": {
     "name": "Hola Mundo App",
     "version": "1",
-    "iconUrl": "https://hola-mundo-mu.vercel.app/icon.png",
+    "iconUrl": "https://hola-mundo-mu.vercel.app/.well-known/icon.png",
     "homeUrl": "https://hola-mundo-mu.vercel.app",
-    "imageUrl": "https://hola-mundo-mu.vercel.app/image.png",
-    "splashImageUrl": "https://hola-mundo-mu.vercel.app/splash.png",
+    "splashImageUrl": "https://hola-mundo-mu.vercel.app/.well-known/splash.png",
     "splashBackgroundColor": "#6200EA",
     "webhookUrl": "https://hola-mundo-mu.vercel.app/api/webhook",
     "subtitle": "Ve lo que tiene para ofrecer la nueva app de Hola Mundo",
     "description": "Esta es una app de prueba de Hola Mundo",
-    "primaryCategory": "social"
+    "primaryCategory": "social",
+    "screenshotUrls": [
+      "https://hola-mundo-mu.vercel.app/.well-known/hero.png"
+    ],
+    "tags": ["social", "demo", "hola-mundo"]
   },
   "accountAssociation": {
     "header": "eyJmaWQiOjMxMjcwMywidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweEIxOTQwQjVhQ2NjNGVmZTNmMkU4ODczNWZBOTU0QWY2MzYwNTkzOTcifQ",
     "payload": "eyJkb21haW4iOiJob2xhLW11bmRvLW11LnZlcmNlbC5hcHAifQ",
     "signature": "MHhlYWMxOGU1ZWY4ZTJjOGU5ZWExMTc0MDYxZmZiMDQ3YmE0OWQ5NWIzYWQxMDI0OGJjODIwNTBhZTkwZDM2NGI1MDA5NmNjM2FiNTYyNzYxNjE1OWViMjQ1YjkyNTA0ZDZiNTdhMjJiYmI2ZTFhNzQ2OTZjYmJhYWE5YmFiNTcyNDFj"
   },
-  "tags": ["social", "demo", "hola-mundo"],
   "baseBuilder": {
     "allowedAddresses": [
       "0xB3E217d5F82FBF541D4384088dC26537B0feE136"
