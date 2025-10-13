@@ -1,7 +1,6 @@
 {
   "name": "miniapp-holamundo",
   "version": "1.0.0",
-  "description": "Hola Mundo App en Next.js para Farcaster",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,9 +9,7 @@
   "dependencies": {
     "next": "14.2.3",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
-  },
-  "devDependencies": {
-    "typescript": "^5.3.3"
+    "react-dom": "18.2.0",
+    "@farcaster/mini-kit": "latest"
   }
 }
