@@ -4,14 +4,15 @@ import { useEffect } from "react";
 
 export default function Page() {
   useEffect(() => {
-    // Intentamos cargar el SDK dinámicamente solo si está disponible
     const initFarcaster = async () => {
       try {
-        const { sdk } = await import("@farcaster/mini-kit");
+        // Evita que Webpack intente resolver el módulo durante el build
+        const farcasterModule = require("@farcaster/mini-kit");
+        const sdk = farcasterModule.sdk;
         sdk.actions.ready();
-        console.log("Farcaster Mini Kit initialized");
+        console.log("✅ Farcaster SDK initialized");
       } catch (err) {
-        console.warn("Farcaster SDK not found — running in web preview mode");
+        console.warn("⚠️ Farcaster SDK not available — running on web preview");
       }
     };
 
