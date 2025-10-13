@@ -1,12 +1,27 @@
 "use client";
 
+import { useEffect } from "react";
+import { sdk } from "@farcaster/mini-kit";
+
 export default function Page() {
+  // Llamamos a sdk.actions.ready() cuando la app está lista
+  useEffect(() => {
+    sdk.actions.ready();
+  }, []);
+
   const handleClick = () => {
     alert("¡Hola mundo desde Next.js en Vercel!");
   };
 
   return (
-    <main style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "50px" }}>
+    <main
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        marginTop: "50px",
+      }}
+    >
       <h1>Hola Mundo 👋</h1>
       <button
         onClick={handleClick}
