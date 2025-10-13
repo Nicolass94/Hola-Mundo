@@ -1,12 +1,21 @@
 "use client";
 
 import { useEffect } from "react";
-import { sdk } from "@farcaster/mini-kit";
 
 export default function Page() {
-  // Llamamos a sdk.actions.ready() cuando la app está lista
   useEffect(() => {
-    sdk.actions.ready();
+    // Intentamos cargar el SDK dinámicamente solo si está disponible
+    const initFarcaster = async () => {
+      try {
+        const { sdk } = await import("@farcaster/mini-kit");
+        sdk.actions.ready();
+        console.log("Farcaster Mini Kit initialized");
+      } catch (err) {
+        console.warn("Farcaster SDK not found — running in web preview mode");
+      }
+    };
+
+    initFarcaster();
   }, []);
 
   const handleClick = () => {
