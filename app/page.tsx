@@ -4,19 +4,22 @@ import { useEffect } from "react";
 
 export default function Page() {
   useEffect(() => {
-    const initMiniKit = async () => {
-      try {
-        const { sdk } = await import(
-          "https://unpkg.com/@farcaster/mini-kit@latest/dist/index.js"
-        );
-        sdk.actions.ready();
-        console.log("✅ MiniKit initialized correctamente");
-      } catch (err) {
-        console.warn("MiniKit no se pudo cargar (posiblemente fuera de Warpcast):", err);
-      }
-    };
-
-    initMiniKit();
+    // Cargar el script de MiniKit solo si no está cargado
+    if (!document.getElementById("minikit-script")) {
+      const script = document.createElement("script");
+      script.id = "minikit-script";
+      script.src = "https://unpkg.com/@farcaster/mini-kit@latest/dist/index.js";
+      script.async = true;
+      script.onload = () => {
+        if (window.sdk) {
+          window.sdk.actions.ready();
+          console.log("✅ MiniKit inicializado correctamente");
+        }
+      };
+      document.body.appendChild(script);
+    } else if (window.sdk) {
+      window.sdk.actions.ready();
+    }
   }, []);
 
   const handleClick = () => {
