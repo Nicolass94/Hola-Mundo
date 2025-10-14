@@ -11,8 +11,7 @@
   "dependencies": {
     "next": "14.2.3",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "@farcaster/mini-kit": "git+https://github.com/farcasterxyz/mini-kit.git"
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "eslint": "8.57.0",
