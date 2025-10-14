@@ -1,23 +1,26 @@
 "use client";
 
 import { useEffect } from "react";
-import { sdk } from "@farcaster/mini-kit";
 
 export default function Page() {
   useEffect(() => {
-    const init = async () => {
+    const initMiniKit = async () => {
       try {
-        await sdk.actions.ready();
-        console.log("✅ Mini app lista para usar");
+        const { sdk } = await import(
+          "https://unpkg.com/@farcaster/mini-kit@latest/dist/index.js"
+        );
+        sdk.actions.ready();
+        console.log("✅ MiniKit initialized correctamente");
       } catch (err) {
-        console.error("⚠️ Error al inicializar Farcaster SDK:", err);
+        console.warn("MiniKit no se pudo cargar (posiblemente fuera de Warpcast):", err);
       }
     };
-    init();
+
+    initMiniKit();
   }, []);
 
   const handleClick = () => {
-    alert("¡Hola mundo desde Next.js en Vercel!");
+    alert("¡Hola mundo desde Next.js en Vercel y Farcaster!");
   };
 
   return (
@@ -47,3 +50,4 @@ export default function Page() {
     </main>
   );
 }
+
