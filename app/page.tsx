@@ -9,11 +9,11 @@ export default function Home() {
     script.async = true;
 
     script.onload = () => {
-      console.log("📦 MiniKit script cargado");
-
+      console.log("📦 MiniKit cargado");
       const interval = setInterval(() => {
-        if (window && (window as any).sdk?.actions) {
-          (window as any).sdk.actions.ready();
+        const sdk = (window as any).sdk;
+        if (sdk?.actions) {
+          sdk.actions.ready();
           console.log("✅ MiniKit inicializado correctamente");
           clearInterval(interval);
         }
@@ -21,7 +21,7 @@ export default function Home() {
     };
 
     script.onerror = () => {
-      console.error("❌ Error al cargar el script de MiniKit");
+      console.error("❌ Error al cargar MiniKit");
     };
 
     document.body.appendChild(script);
@@ -32,7 +32,7 @@ export default function Home() {
     if (sdk?.actions) {
       sdk.actions.openUrl("https://warpcast.com");
     } else {
-      alert("⚠️ SDK no disponible todavía");
+      alert("⚠️ SDK aún no disponible");
     }
   };
 
@@ -50,5 +50,4 @@ export default function Home() {
     </main>
   );
 }
-
 
