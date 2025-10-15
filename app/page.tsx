@@ -1,56 +1,60 @@
 "use client";
-
 import { useEffect } from "react";
 
-export default function Page() {
+declare global {
+  interface Window {
+    sdk?: any;
+  }
+}
+
+export default function Home() {
   useEffect(() => {
-    // Cargar el script de MiniKit solo si no está cargado
-    if (!document.getElementById("minikit-script")) {
-      const script = document.createElement("script");
-      script.id = "minikit-script";
-      script.src = "https://unpkg.com/@farcaster/mini-kit@latest/dist/index.js";
-      script.async = true;
-      script.onload = () => {
-        if (window.sdk) {
+    const script = document.createElement("script");
+    script.src =
+      "https://cdn.jsdelivr.net/npm/@farcaster/mini-kit@latest/dist/mini-kit.umd.js";
+    script.async = true;
+
+    script.onload = () => {
+      console.log("📦 MiniKit script cargado");
+
+      // Esperamos un poco para asegurar que el SDK esté disponible
+      const interval = setInterval(() => {
+        if (window.sdk && window.sdk.actions) {
           window.sdk.actions.ready();
           console.log("✅ MiniKit inicializado correctamente");
+          clearInterval(interval);
         }
-      };
-      document.body.appendChild(script);
-    } else if (window.sdk) {
-      window.sdk.actions.ready();
-    }
+      }, 300);
+    };
+
+    script.onerror = () => {
+      console.error("❌ Error al cargar el script de MiniKit");
+    };
+
+    document.body.appendChild(script);
   }, []);
 
   const handleClick = () => {
-    alert("¡Hola mundo desde Next.js en Vercel y Farcaster!");
+    if (window.sdk && window.sdk.actions) {
+      window.sdk.actions.openUrl("https://warpcast.com");
+    } else {
+      alert("⚠️ SDK no disponible todavía");
+    }
   };
 
   return (
-    <main
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        marginTop: "50px",
-      }}
-    >
-      <h1>Hola Mundo 👋</h1>
+    <main className="flex min-h-screen flex-col items-center justify-center p-24">
+      <h1 className="text-4xl font-bold mb-4">👋 Hola Mundo</h1>
+      <p className="mb-8">Mini App de prueba en Farcaster</p>
+
       <button
         onClick={handleClick}
-        style={{
-          marginTop: "20px",
-          padding: "10px 20px",
-          borderRadius: "8px",
-          border: "none",
-          background: "#0070f3",
-          color: "white",
-          cursor: "pointer",
-        }}
+        className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition"
       >
-        Hacé click acá
+        Abrir Warpcast
       </button>
     </main>
   );
 }
+
 
