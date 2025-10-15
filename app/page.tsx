@@ -3,19 +3,23 @@ import { useEffect } from "react";
 
 export default function Home() {
   useEffect(() => {
+    // Evitar cargar MiniKit más de una vez
+    if (document.getElementById("mini-kit-script")) return;
+
     const script = document.createElement("script");
+    script.id = "mini-kit-script";
     script.src =
       "https://cdn.jsdelivr.net/npm/@farcaster/mini-kit@latest/dist/mini-kit.umd.js";
     script.async = true;
 
     script.onload = () => {
       console.log("📦 MiniKit cargado");
-      const interval = setInterval(() => {
+      const checkReady = setInterval(() => {
         const sdk = (window as any).sdk;
         if (sdk?.actions) {
           sdk.actions.ready();
           console.log("✅ MiniKit inicializado correctamente");
-          clearInterval(interval);
+          clearInterval(checkReady);
         }
       }, 300);
     };
@@ -50,4 +54,3 @@ export default function Home() {
     </main>
   );
 }
-
