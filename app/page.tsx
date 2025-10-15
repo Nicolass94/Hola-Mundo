@@ -1,12 +1,6 @@
 "use client";
 import { useEffect } from "react";
 
-declare global {
-  interface Window {
-    sdk?: any;
-  }
-}
-
 export default function Home() {
   useEffect(() => {
     const script = document.createElement("script");
@@ -17,10 +11,9 @@ export default function Home() {
     script.onload = () => {
       console.log("📦 MiniKit script cargado");
 
-      // Esperamos un poco para asegurar que el SDK esté disponible
       const interval = setInterval(() => {
-        if (window.sdk && window.sdk.actions) {
-          window.sdk.actions.ready();
+        if (window && (window as any).sdk?.actions) {
+          (window as any).sdk.actions.ready();
           console.log("✅ MiniKit inicializado correctamente");
           clearInterval(interval);
         }
@@ -35,8 +28,9 @@ export default function Home() {
   }, []);
 
   const handleClick = () => {
-    if (window.sdk && window.sdk.actions) {
-      window.sdk.actions.openUrl("https://warpcast.com");
+    const sdk = (window as any).sdk;
+    if (sdk?.actions) {
+      sdk.actions.openUrl("https://warpcast.com");
     } else {
       alert("⚠️ SDK no disponible todavía");
     }
