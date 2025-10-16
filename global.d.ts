@@ -1,7 +1,8 @@
+// global.d.ts
 export {};
 
 declare global {
   interface Window {
-    sdk?: any;
+    MiniKit?: any;
   }
 }
