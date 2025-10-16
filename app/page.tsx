@@ -3,49 +3,43 @@ import { useEffect } from "react";
 
 export default function Home() {
   useEffect(() => {
-    async function loadMiniKit() {
-      try {
-        // Cargar el script del MiniKit
-        const script = document.createElement("script");
-        script.src =
-          "https://cdn.jsdelivr.net/npm/@farcaster/mini-kit@latest/dist/mini-kit.umd.js";
-        script.async = true;
+    const script = document.createElement("script");
+    script.src =
+      "https://cdn.jsdelivr.net/npm/@farcaster/mini-kit@latest/dist/mini-kit.umd.js";
+    script.async = true;
 
-        script.onload = () => {
-          console.log("📦 MiniKit cargado");
-          const sdk = (window as any).sdk;
+    script.onload = () => {
+      console.log("📦 MiniKit cargado");
 
-          if (sdk && sdk.actions) {
-            sdk.actions.ready();
-            console.log("✅ sdk.actions.ready() ejecutado correctamente");
-          } else {
-            console.warn("⚠️ SDK no disponible todavía, reintentando...");
-            const retry = setInterval(() => {
-              const retrySdk = (window as any).sdk;
-              if (retrySdk?.actions) {
-                retrySdk.actions.ready();
-                console.log("✅ SDK inicializado en reintento");
-                clearInterval(retry);
-              }
-            }, 500);
-          }
-        };
+      const interval = setInterval(() => {
+        const sdk =
+          (window as any).sdk ||
+          (window as any).farcaster ||
+          (window as any).miniKit;
 
-        script.onerror = () => {
-          console.error("❌ Error al cargar MiniKit");
-        };
+        console.log("🔍 Buscando SDK...", sdk);
 
-        document.body.appendChild(script);
-      } catch (err) {
-        console.error("Error cargando MiniKit:", err);
-      }
-    }
+        if (sdk?.actions?.ready) {
+          sdk.actions.ready();
+          console.log("✅ MiniKit inicializado correctamente");
+          clearInterval(interval);
+        }
+      }, 1000); // Espera 1 segundo entre cada intento
+    };
 
-    loadMiniKit();
+    script.onerror = () => {
+      console.error("❌ Error al cargar MiniKit");
+    };
+
+    document.body.appendChild(script);
   }, []);
 
   const handleClick = () => {
-    const sdk = (window as any).sdk;
+    const sdk =
+      (window as any).sdk ||
+      (window as any).farcaster ||
+      (window as any).miniKit;
+
     if (sdk?.actions?.openUrl) {
       sdk.actions.openUrl("https://warpcast.com");
     } else {
@@ -54,9 +48,9 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <h1 className="text-4xl font-bold mb-4">👋 Hola Mundo</h1>
-      <p className="mb-8">Mini App de prueba en Farcaster</p>
+    <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-gray-100">
+      <h1 className="text-4xl font-bold mb-4 text-purple-800">👋 Hola Mundo</h1>
+      <p className="mb-8 text-gray-700">Mini App de prueba en Farcaster</p>
 
       <button
         onClick={handleClick}
@@ -67,3 +61,4 @@ export default function Home() {
     </main>
   );
 }
+
