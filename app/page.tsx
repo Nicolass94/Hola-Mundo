@@ -3,44 +3,52 @@ import { useEffect } from "react";
 
 export default function Home() {
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src =
-      "https://cdn.jsdelivr.net/npm/@farcaster/mini-kit@latest/dist/mini-kit.umd.js";
-    script.async = true;
+    const loadMiniKit = async () => {
+      try {
+        // Evitar cargar el script más de una vez
+        if (document.getElementById("minikit-sdk")) return;
 
-    script.onload = () => {
-      console.log("📦 MiniKit cargado");
+        const script = document.createElement("script");
+        script.id = "minikit-sdk";
+        script.src = "https://cdn.jsdelivr.net/npm/@farcaster/mini-kit@latest/dist/browser.js";
+        script.async = true;
 
-      const interval = setInterval(() => {
-        const sdk =
-          (window as any).sdk ||
-          (window as any).farcaster ||
-          (window as any).miniKit;
+        script.onload = () => {
+          console.log("✅ MiniKit cargado correctamente desde CDN");
 
-        console.log("🔍 Buscando SDK...", sdk);
+          // @ts-ignore
+          if (window?.MiniKit) {
+            const sdk = new (window as any).MiniKit();
+            (window as any).sdk = sdk;
 
-        if (sdk?.actions?.ready) {
-          sdk.actions.ready();
-          console.log("✅ MiniKit inicializado correctamente");
-          clearInterval(interval);
-        }
-      }, 1000); // Espera 1 segundo entre cada intento
+            // 👇 Esto elimina el error "Ready not called"
+            if (sdk.actions && sdk.actions.ready) {
+              sdk.actions.ready();
+              console.log("🟢 SDK listo y registrado");
+            } else {
+              console.warn("⚠️ SDK cargado pero sin método ready()");
+            }
+          } else {
+            console.error("❌ No se encontró MiniKit en window");
+          }
+        };
+
+        script.onerror = () => {
+          console.error("❌ Error al cargar MiniKit desde CDN");
+        };
+
+        document.body.appendChild(script);
+      } catch (err) {
+        console.error("⚠️ Error general al cargar MiniKit:", err);
+      }
     };
 
-    script.onerror = () => {
-      console.error("❌ Error al cargar MiniKit");
-    };
-
-    document.body.appendChild(script);
+    loadMiniKit();
   }, []);
 
   const handleClick = () => {
-    const sdk =
-      (window as any).sdk ||
-      (window as any).farcaster ||
-      (window as any).miniKit;
-
-    if (sdk?.actions?.openUrl) {
+    const sdk = (window as any).sdk;
+    if (sdk && sdk.actions) {
       sdk.actions.openUrl("https://warpcast.com");
     } else {
       alert("⚠️ SDK aún no disponible");
@@ -48,9 +56,9 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-gray-100">
-      <h1 className="text-4xl font-bold mb-4 text-purple-800">👋 Hola Mundo</h1>
-      <p className="mb-8 text-gray-700">Mini App de prueba en Farcaster</p>
+    <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-gray-900 text-white">
+      <h1 className="text-4xl font-bold mb-4">👋 Hola Mundo</h1>
+      <p className="mb-8 text-center">Mini App de prueba en Farcaster</p>
 
       <button
         onClick={handleClick}
