@@ -3,37 +3,50 @@ import { useEffect } from "react";
 
 export default function Home() {
   useEffect(() => {
-    // Evitar cargar MiniKit más de una vez
-    if (document.getElementById("mini-kit-script")) return;
+    async function loadMiniKit() {
+      try {
+        // Cargar el script del MiniKit
+        const script = document.createElement("script");
+        script.src =
+          "https://cdn.jsdelivr.net/npm/@farcaster/mini-kit@latest/dist/mini-kit.umd.js";
+        script.async = true;
 
-    const script = document.createElement("script");
-    script.id = "mini-kit-script";
-    script.src =
-      "https://cdn.jsdelivr.net/npm/@farcaster/mini-kit@latest/dist/mini-kit.umd.js";
-    script.async = true;
+        script.onload = () => {
+          console.log("📦 MiniKit cargado");
+          const sdk = (window as any).sdk;
 
-    script.onload = () => {
-      console.log("📦 MiniKit cargado");
-      const checkReady = setInterval(() => {
-        const sdk = (window as any).sdk;
-        if (sdk?.actions) {
-          sdk.actions.ready();
-          console.log("✅ MiniKit inicializado correctamente");
-          clearInterval(checkReady);
-        }
-      }, 300);
-    };
+          if (sdk && sdk.actions) {
+            sdk.actions.ready();
+            console.log("✅ sdk.actions.ready() ejecutado correctamente");
+          } else {
+            console.warn("⚠️ SDK no disponible todavía, reintentando...");
+            const retry = setInterval(() => {
+              const retrySdk = (window as any).sdk;
+              if (retrySdk?.actions) {
+                retrySdk.actions.ready();
+                console.log("✅ SDK inicializado en reintento");
+                clearInterval(retry);
+              }
+            }, 500);
+          }
+        };
 
-    script.onerror = () => {
-      console.error("❌ Error al cargar MiniKit");
-    };
+        script.onerror = () => {
+          console.error("❌ Error al cargar MiniKit");
+        };
 
-    document.body.appendChild(script);
+        document.body.appendChild(script);
+      } catch (err) {
+        console.error("Error cargando MiniKit:", err);
+      }
+    }
+
+    loadMiniKit();
   }, []);
 
   const handleClick = () => {
     const sdk = (window as any).sdk;
-    if (sdk?.actions) {
+    if (sdk?.actions?.openUrl) {
       sdk.actions.openUrl("https://warpcast.com");
     } else {
       alert("⚠️ SDK aún no disponible");
