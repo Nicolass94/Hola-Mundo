@@ -1,14 +1,16 @@
 {
   "name": "Hola Mundo",
-  "description": "Miniapp de prueba para Farcaster",
+  "description": "Mini App de prueba en Farcaster",
   "icon_url": "https://hola-mundo-mu.vercel.app/icon.png",
   "splash_image_url": "https://hola-mundo-mu.vercel.app/splash.png",
   "developer": {
-    "name": "Nicolás",
+    "name": "Nicolás B.",
     "url": "https://hola-mundo-mu.vercel.app"
   },
-  "webhook_url": "https://hola-mundo-mu.vercel.app/api/webhook",
-  "requested_capabilities": ["message.read", "message.write"],
+  "homepage_url": "https://hola-mundo-mu.vercel.app",
+  "terms_of_service_url": "https://hola-mundo-mu.vercel.app/terms",
   "privacy_policy_url": "https://hola-mundo-mu.vercel.app/privacy",
-  "terms_of_service_url": "https://hola-mundo-mu.vercel.app/terms"
+  "supported_features": ["actions", "openUrl"],
+  "version": "1.0.0",
+  "app_url": "https://hola-mundo-mu.vercel.app"
 }
