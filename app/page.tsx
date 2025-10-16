@@ -1,56 +1,73 @@
 "use client";
+import { useEffect, useState } from "react";
 
-import React, { useEffect } from "react";
+export default function Home() {
+  const [isWarpcast, setIsWarpcast] = useState(false);
+  const [sdkReady, setSdkReady] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-export default function Page() {
   useEffect(() => {
-    const loadMiniKit = () => {
-      const script = document.createElement("script");
-      script.src = "/mini-kit.js"; // ✅ Ahora se carga el SDK local, no desde CDN
-      script.async = true;
+    const initSDK = async () => {
+      try {
+        // Detectar si estamos en Warpcast
+        const inWarpcast = /warpcast/i.test(navigator.userAgent);
+        setIsWarpcast(inWarpcast);
 
-      script.onload = () => {
-        try {
-          const sdk = new (window as any).MiniKit();
-          (window as any).sdk = sdk;
-          console.log("✅ MiniKit cargado correctamente");
-          sdk.actions.ready();
-          console.log("🟢 SDK listo y registrado correctamente");
-        } catch (err) {
-          console.error("⚠️ Error inicializando MiniKit:", err);
+        // Cargar el SDK real si estamos dentro de Warpcast
+        if (inWarpcast) {
+          const script = document.createElement("script");
+          script.src = "https://cdn.farcaster.xyz/mini-kit/v0.0.4-alpha.3/mini-kit.js";
+          script.async = true;
+          script.onload = () => {
+            if (window.MiniKit) {
+              try {
+                const kit = new window.MiniKit();
+                kit.actions.ready(); // Indicar que la miniapp está lista
+                setSdkReady(true);
+              } catch (e) {
+                console.error("Error inicializando MiniKit:", e);
+                setError("Error inicializando MiniKit");
+              }
+            } else {
+              setError("MiniKit no disponible en el entorno Warpcast");
+            }
+          };
+          script.onerror = () => setError("Error al cargar MiniKit desde CDN");
+          document.body.appendChild(script);
+        } else {
+          // Si no estamos en Warpcast, usamos un mock para desarrollo web
+          console.warn("Entorno de desarrollo detectado: usando mock MiniKit");
+          setSdkReady(true);
         }
-      };
-
-      script.onerror = () => {
-        console.error("❌ Error al cargar MiniKit desde /mini-kit.js");
-      };
-
-      document.body.appendChild(script);
+      } catch (err) {
+        console.error("Error general:", err);
+        setError("Fallo al inicializar SDK");
+      }
     };
 
-    loadMiniKit();
+    initSDK();
   }, []);
 
-  const handleClick = () => {
-    const sdk = (window as any).sdk;
-    if (sdk?.actions) {
-      sdk.actions.openUrl("https://warpcast.com");
-    } else {
-      alert("⚠️ SDK aún no disponible");
-    }
+  const handleOpenWarpcast = () => {
+    window.open("https://warpcast.com/~/add-cast-action?url=https://hola-mundo-mu.vercel.app", "_blank");
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <h1 className="text-4xl font-bold mb-4">👋 Hola Mundo</h1>
-      <p className="mb-8">Mini App de prueba en Farcaster</p>
+    <main style={{ padding: "2rem" }}>
+      <h1>👋 Hola Mundo</h1>
+      <p>Mini App de prueba en Farcaster</p>
 
-      <button
-        onClick={handleClick}
-        className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition"
-      >
-        Abrir Warpcast
+      {error && <p style={{ color: "red" }}>❌ {error}</p>}
+      {!error && sdkReady && <p>✅ SDK inicializado correctamente</p>}
+      {!error && !sdkReady && <p>⌛ Cargando SDK...</p>}
+
+      <button onClick={handleOpenWarpcast} style={{ marginTop: "1rem" }}>
+        Abrir en Warpcast
       </button>
+
+      <p style={{ marginTop: "1rem", color: "#666" }}>
+        Entorno actual: {isWarpcast ? "🌐 Warpcast (producción)" : "💻 Web (desarrollo)"}
+      </p>
     </main>
   );
 }
