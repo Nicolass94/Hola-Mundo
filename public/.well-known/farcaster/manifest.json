@@ -12,5 +12,6 @@
   "privacy_policy_url": "https://hola-mundo-mu.vercel.app/privacy",
   "supported_features": ["actions", "openUrl"],
   "version": "1.0.0",
-  "app_url": "https://hola-mundo-mu.vercel.app"
+  "app_url": "https://hola-mundo-mu.vercel.app",
+  "app_id": "hola-mundo-mu"
 }
