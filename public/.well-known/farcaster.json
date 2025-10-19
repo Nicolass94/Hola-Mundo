@@ -5,7 +5,7 @@
   "homeUrl": "https://hola-mundo-mu.vercel.app",
   "splashImageUrl": "https://hola-mundo-mu.vercel.app/.well-known/splash.png",
   "splashBackgroundColor": "#6200EA",
-  "webhookUrl": "https://hola-mundo-mu.vercel.app/api/webhook",
+  "webhookUrl": "https://api.neynar.com/f/app/ecb492c9-b664-4e06-b1f6-2f6d7414a069/event",
   "subtitle": "Ve lo que tiene para ofrecer la nueva app de Hola Mundo",
   "description": "Esta es una app de prueba de Hola Mundo",
   "primaryCategory": "social",
