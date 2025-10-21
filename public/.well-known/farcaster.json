@@ -15,7 +15,7 @@
   "tags": ["social", "demo", "hola-mundo"],
   
   "accountAssociation": {
-    "header": "eyJmaWQiOjMxMjcwMywidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweEIxOTQwQjVhQ2NjNGVmZTNmMkU4ODczNWZBOTU0QWY2MzYwNTkzOTcifQ",
+    "header": "eyJmaWQiOjMxMjcwMywidHlwZSI6ImF1dGgiLCJrZXkiOiIweDllNjI5NDU4QzEyMjc1QWNjMDJlMTZFYmNkOThlMzY5MTYyN2VDRTgifQ",
     "payload": "eyJkb21haW4iOiJob2xhLW11bmRvLW11LnZlcmNlbC5hcHAifQ",
     "signature": "e8dm6/UcZx0D5P33wrEcp6+cuYKnML1iEayk8Gd1wXZGga6Utfb/7fHddSL1sgw4Gi9bkYe+I+SMMBRjlzdVbhs="
   },
