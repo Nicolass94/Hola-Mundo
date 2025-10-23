@@ -1,23 +1,22 @@
 {
-  "miniapp": {
+  "frame": {
     "name": "Hola Mundo App",
-    "version": "1.0.0",
-    "iconUrl": "https://hola-mundo-mu.vercel.app/.well-known/icon.png",
-    "homeUrl": "https://hola-mundo-mu.vercel.app",
-    "splashImageUrl": "https://hola-mundo-mu.vercel.app/.well-known/splash.png",
-    "splashBackgroundColor": "#6200EA",
-    "webhookUrl": "https://hola-mundo-mu.vercel.app/api/webhook",
+    "homeUrl": "https://hola-mundo.vercel.app",
+    "iconUrl": "https://hola-mundo.vercel.app/.well-known/icon.png",
+    "version": "1",
     "subtitle": "Nueva app en Farcaster",
+    "webhookUrl": "https://hola-mundo.vercel.app/api/webhook",
     "description": "Esta es una app de prueba de Hola Mundo.",
-    "primaryCategory": "social",
     "screenshotUrls": [
-      "https://hola-mundo-mu.vercel.app/.well-known/hero.png"
+      "https://hola-mundo.vercel.app/.well-known/hero.png"
     ],
-    "tags": ["hola-mundo", "demo", "social"]
+    "splashImageUrl": "https://hola-mundo.vercel.app/.well-known/splash.png",
+    "primaryCategory": "social",
+    "splashBackgroundColor": "#6200EA"
   },
   "accountAssociation": {
     "header": "eyJmaWQiOjMxMjcwMywidHlwZSI6ImF1dGgiLCJrZXkiOiIweDllNjI5NDU4QzEyMjc1QWNjMDJlMTZFYmNkOThlMzY5MTYyN2VDRTgifQ",
-    "payload": "eyJkb21haW4iOiJob2xhLW11bmRvLW11LnZlcmNlbC5hcHAifQ",
+    "payload": "eyJkb21haW4iOiJob2xhLW11bmRvLnZlcmNlbC5hcHAifQ",
     "signature": "e8dm6/UcZx0D5P33wrEcp6+cuYKnML1iEayk8Gd1wXZGga6Utfb/7fHddSL1sgw4Gi9bkYe+I+SMMBRjlzdVbhs="
   }
 }
