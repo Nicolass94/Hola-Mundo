@@ -1,14 +1,24 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  async redirects() {
+  output: 'standalone',
+  experimental: {
+    serverActions: {
+      allowedOrigins: ['*'],
+    },
+  },
+  async headers() {
     return [
       {
-        source: '/.well-known/farcaster.json',
-        destination: '/farcaster.json',
-        permanent: true,
+        source: '/.well-known/:path*',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'application/json',
+          },
+        ],
       },
     ];
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
