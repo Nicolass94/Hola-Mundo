@@ -1,9 +1,18 @@
 {
+  "rewrites": [
+    {
+      "source": "/.well-known/(.*)",
+      "destination": "/well-known/$1"
+    }
+  ],
   "headers": [
     {
-      "source": "/.well-known/farcaster.json",
+      "source": "/.well-known/(.*)",
       "headers": [
-        { "key": "Content-Type", "value": "application/json" }
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        }
       ]
     }
   ]
